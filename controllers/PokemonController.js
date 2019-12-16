@@ -18,7 +18,7 @@ module.exports = {
         const name_search = req.params.name.charAt(0).toUpperCase() + req.params.name.substring(1)
         await Pokemon.find({ name: name_search }, (error, pokemon) => {
             if (error) return res.status(500).json({ "message": "There is a problem finding the pokemon" })
-            if (pokemon === 0) return res.status(404).json({ "message": "Pokemon not finded" })
+            if (pokemon.length === 0) return res.status(404).json({ "message": "Pokemon not finded" })
             return res.status(200).json(pokemon)
         })
     },
@@ -26,7 +26,7 @@ module.exports = {
     // GET IF TYPE
     async show_type(req, res) {
         const type_search = req.params.type.charAt(0).toUpperCase() + req.params.type.substring(1)
-        Pokemon.find({ type: type_search }, (error, pokemons) => {
+        await Pokemon.find({ type: type_search }, (error, pokemons) => {
             if (error) return res.status(500).json({ "message": "There is a problem finding the pokemon" })
             if (pokemons.length === 0) return res.status(404).json({ "message": "Pokemons not finded" })
             return res.status(200).json(pokemons)
