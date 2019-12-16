@@ -18,10 +18,10 @@ require("./models/Pokemon")
 // Rotas
 app.use("/api",require("./routes/routes"))
 app.get("/",(req,res) =>{
-    return res.send("index")
+    return res.send("Repositório da API : github.com/ThyagoFr/pokemons-api")
 })
 
-var port = process.env.PORT || 7000
+var port = process.env.PORT || 8080
 app.listen(port,()=>{
     console.log("Rodando...")
 })
